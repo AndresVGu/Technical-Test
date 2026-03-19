@@ -18,7 +18,7 @@ public class Sale {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private LocalDate date;
-    private String state;
+    private String status;
     private Double total;
     //Create an object to represent the class Branch
     @ManyToOne
