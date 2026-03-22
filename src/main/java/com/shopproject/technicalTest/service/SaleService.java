@@ -68,6 +68,7 @@ public class SaleService implements ISaleService {
         //Details List
         //--> Here are the products
         List<DetailSale> detailsList = new ArrayList<>();
+        Double totalCalculated = 0.0;
 
         for (DetailSaleDTO detDTO : saleDTO.getDetail()){
             //Search product by id (your DTO use id as a product id)
@@ -87,13 +88,14 @@ public class SaleService implements ISaleService {
             detailS.setSale(s);
 
             detailsList.add(detailS);
+            totalCalculated = totalCalculated+(detDTO.getUnitPrice()*detDTO.getProductQuantity());
         }
 
         //Set details sale list
         s.setDetail(detailsList);
 
         //Save
-        saleRepo.save(s);
+        s = saleRepo.save(s);
 
         //Mapping
         SaleDTO saleOutput = Mapper.toDTO(s);

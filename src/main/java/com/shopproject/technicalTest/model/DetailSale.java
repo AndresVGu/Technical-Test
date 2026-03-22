@@ -17,11 +17,13 @@ public class DetailSale {
     private Long id;
 
     //Sale one sale can have many details
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "saleId")
     private Sale sale;
 
     //Product
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "productId")
     private Product product;
 
     private int prodQuantity;
