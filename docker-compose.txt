@@ -1,0 +1,79 @@
+version: '3'
+
+services:
+    PruebaTecSupermercado: #nombre de la app establecida en application.properties
+        build: PruebaTecSupermercado #nombre de la carpeta donde esta el DockerFIle
+        mem_limit: 512m
+        ports:
+            - "8080:8080"
+        environment:
+            DB_URL: jdbc:mysql://pruebatecsuper:3306/pruebatecsuper?createDatabaseIfNotExist=true&serverTimezone=UTC
+            DB_USERNAME: root
+            DB_PASSWORD:1234
+        restart: always
+        depends_on:
+            pruebatecsuper:
+                condition: service_healthy
+    pruebatecsuper: #configuracioes de base de datos dockerizada
+        image: mysql:8.0.33 #misma version que este en el pom
+        ports:
+            - "3307:3306"
+        environment:
+            MYSQL_ROOT_PASSWORD: 1234
+            MYSQL_PASSWORD: 1234
+            MYSQL_DATABASE: pruebatecsuper
+        restart: always
+        healthcheck:
+            test: ["CMD", "mysqladmin", "ping", "-h", "localhost"]
+            timeout: 10s
+            retries: 10
+
+            Deployment
+            1. Agregar archivo dockerfile que no tenga extension
+
+            FROM openjdk:17-jdk-slim
+            ARG JAR_FILE=target/Technical-Test-0.0.1.jar
+            COPY ${JAR_FILE} app_testsupermarket.jar
+            EXPOSE 8080
+            ENTRYPOINT ["java", "-jar", "app_testsupermarket.jar"]
+
+             -primer comando que vamos a utilizar (el open jdk para java siggue las licencias recomendadas)
+
+             2. COnfigurar las variables de entorno en application.properties
+
+             # ==========================
+            # Configuraciones de JPA + MySQL (Produccion)
+            # ==========================
+            #Variables de entorno DB_URL, DB_USER_NAME,DB_PASSWORD
+            spring.datasource.url=${DB_URL}
+            spring.datasource.username=${DB_USER_NAME}
+            spring.datasource.password=${DB_PASSWORD}
+            spring.jpa.hibernate.ddl-auto=update
+            spring.jpa.properties.hibernate.dialect=${DB_PLATFORM}
+            server.port=8080
+
+            configurar las vaiales dando cick derecho en applicacion name => edit configurations
+
+            url =>
+
+            jdbc:mysql://pruebatecsuper:3306/pruebatecsuper?createDatabaseIfNotExist=true&serverTimezone=UTC
+
+            jdbc => tecnologia
+            mysql => base de datos
+            url => pruevatecsuper => servidor/localhost
+            ? => configuraciones
+            serverTimezonne=UTC => configura la hora del servidor
+
+            3. Hacer el ejecutable
+
+            m(de maven ) => life cycle
+
+            4. configurar pom.xml
+            el nombre y la version debe coincidir con el dockerfile
+            5. configurar vaiables de entorne dentro de maven => package => click derecho=> modify run configuration => enviromental variables => inherit from settings => runner
+
+            6. clickeaos en clean y luego install, apaece una tarjetatarget
+            7. crear el DOcker compose
+
+            continuar el min 25:50
+

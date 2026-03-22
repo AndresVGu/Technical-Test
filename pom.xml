@@ -10,8 +10,8 @@
 	</parent>
 	<groupId>com.shopproject</groupId>
 	<artifactId>technicalTest</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
-	<name/>
+	<version>0.0.1</version>
+	<name>Technical-Test</name>
 	<description/>
 	<url/>
 	<licenses>
