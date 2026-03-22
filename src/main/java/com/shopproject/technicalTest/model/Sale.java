@@ -26,7 +26,7 @@ public class Sale {
 
     //add bidirectionality for JPA. JPA can create an intermediate table.
     //also needs to add the attribute for mapping correctly (name of the class, in this case is "sale")
-    //with this relation we dont need to add a repository
+    //with this relation we don't need to add a repository
     @OneToMany(mappedBy = "sale")
     private List<DetailSale> detail = new ArrayList<>();
 }
