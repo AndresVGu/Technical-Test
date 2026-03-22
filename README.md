@@ -13,7 +13,7 @@
 - [Technical Requirements](#-technical-requirements)
 - [Functional Requirements (User Stories)](#-functional-requirements-user-stories)
     - [Products](#-products)
-    - [Branches (Sucursales)](#-branches-sucursales)
+    - [Branches](#-branches-)
     - [Sales](#-sales)
 - [Extra – Statistics](#-extra--statistics)
 
@@ -55,13 +55,13 @@ Additionally, the company wants to:
 
 ## 🧩 Main Entities
 
-- **Branch (Sucursal)**  
+- **Branch**  
   Represents a physical supermarket location.
 
-- **Product (Producto)**  
+- **Product**  
   Represents an item available for sale (e.g., rice, bottled water, etc.).
 
-- **Sale (Venta)**  
+- **Sale**  
   Represents a transaction containing one or more products.
 
 ---
@@ -99,46 +99,46 @@ Additionally, the company wants to:
 
 #### 1. Get all products
 - **Method:** `GET`
-- **Path:** `/api/productos`
+- **Path:** `/api/products`
 - **Description:** Retrieve a list of all registered products
 
 #### 2. Create a new product
 - **Method:** `POST`
-- **Path:** `/api/productos`
+- **Path:** `/api/products`
 - **Description:** Create a new product with name, price, and category
 
 #### 3. Update an existing product
 - **Method:** `PUT`
-- **Path:** `/api/productos/{id}`
+- **Path:** `/api/products/{id}`
 - **Description:** Update the details of a specific product
 
 #### 4. Delete a product
 - **Method:** `DELETE`
-- **Path:** `/api/productos/{id}`
+- **Path:** `/api/products/{id}`
 - **Description:** Remove a product from the system
 
 ---
 
-### 🏪 Branches (Sucursales)
+### 🏪 Branches 
 
 #### 1. Get all branches
 - **Method:** `GET`
-- **Path:** `/api/sucursales`
+- **Path:** `/api/branches`
 - **Description:** Retrieve all branches in the system
 
 #### 2. Create a new branch
 - **Method:** `POST`
-- **Path:** `/api/sucursales`
+- **Path:** `/api/branches`
 - **Description:** Create a new branch with name, address, etc.
 
 #### 3. Update an existing branch
 - **Method:** `PUT`
-- **Path:** `/api/sucursales/{id}`
+- **Path:** `/api/branches/{id}`
 - **Description:** Update branch information
 
 #### 4. Delete a branch
 - **Method:** `DELETE`
-- **Path:** `/api/sucursales/{id}`
+- **Path:** `/api/branches/{id}`
 - **Description:** Remove a branch from the system
 
 ---
@@ -147,14 +147,14 @@ Additionally, the company wants to:
 
 #### 1. Register a new sale
 - **Method:** `POST`
-- **Path:** `/api/ventas`
+- **Path:** `/api/sales`
 - **Payload:**
 ```json
 {
-  "sucursalId": 1,
-  "detalle": [
-    { "productoId": 10, "cantidad": 2 },
-    { "productoId": 5, "cantidad": 1 }
+  "branchId": 1,
+  "detail": [
+    { "productId": 10, "quantity": 2 },
+    { "productId": 5, "quantity": 1 }
   ]
 }
 ```
@@ -162,5 +162,5 @@ Additionally, the company wants to:
 ### 📊 Extra – Statistics
 #### 1. Get the best-selling product
 - **Method:** `GET`
-- **Path:** `/api/estadisticas/producto-mas-vendido`
+- **Path:** `/api/statistics/bestseller-product`
 - **Description:** Calculate the most sold product using Java Streams
